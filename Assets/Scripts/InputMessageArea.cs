@@ -19,8 +19,8 @@ public class InputMessageArea : MonoBehaviour
 
     private void OnSendMessageClick()
     {
-        var text = inputField.text;
+        string messageText = inputField.text;
         inputField.text = string.Empty;
-        OnSendImageClick(text);
+        UChatApp.Instance.ChatController.SendMessage(messageText);
     }
 }

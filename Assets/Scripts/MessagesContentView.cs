@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class MessagesContentView : MonoBehaviour
 {
-    [SerializeField] MessageView messageViewPrefab;
+    [SerializeField] MessageItem messageItemPrefab;
     [SerializeField] RectTransform scrollContent;
-    [SerializeField] InputMessageArea inputArea;
 
     private void Awake()
     {
-        inputArea.OnSendImageClick += OnMessageSended;
+        UChatApp.Instance.CurrentChatRoom.LastMessageChanged += OnMessageSended;
     }
 
     private void OnDestroy()
     {
-        inputArea.OnSendImageClick -= OnMessageSended;
+        UChatApp.Instance.CurrentChatRoom.LastMessageChanged -= OnMessageSended;
     }
 
-    private void OnMessageSended(string text)
+    private void OnMessageSended(Message messageO, Message messageN)
     {
-        var mv = Instantiate(messageViewPrefab);
-        mv.SetText(text);
-        mv.transform.SetParent(scrollContent.transform);
+        var newMessageItem = Instantiate(messageItemPrefab);
+        newMessageItem.transform.SetParent(scrollContent.transform);
+        newMessageItem.Init(messageN);
+
+        if (messageO != null)
+        {
+            bool isSame = messageO.Sender.Id == messageN.Sender.Id;
+            newMessageItem.CalculateTopPadding(isSame);
+        }
     }
 }
