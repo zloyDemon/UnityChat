@@ -18,7 +18,8 @@ public class MessageItem : MonoBehaviour
     public void Init(Message message)
     {
         bool isOwner = UChatApp.Instance.IsOwnerUser(message.Sender);
-        messageBubble.SetMessageData(message.MessageText, "13.05.2020", isOwner);
+        string dateString = DateUtils.GetDateNowFormat();
+        messageBubble.SetMessageData(message.MessageText, dateString, isOwner);
         horizontalLayout.reverseArrangement = !isOwner;
         horizontalLayout.childAlignment = isOwner ? TextAnchor.LowerRight : TextAnchor.LowerLeft;
         var sprite = UChatApp.Instance.Avatars.GetSpriteByName(message.Sender.AvatarId);
