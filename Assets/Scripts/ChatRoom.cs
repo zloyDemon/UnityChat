@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : IDisposable
+public class ChatRoom : IDisposable
 {
     public List<User> RoomUsers { get; } = new List<User>();
     public List<Message> roomMessages { get; } = new List<Message>();
@@ -27,8 +27,8 @@ public class Room : IDisposable
         lastMessages[message.Sender.Id] = message;
         roomMessages.Add(message);
 
-        var buf = LastMessageInRoom;
+        var oldLastMessage = LastMessageInRoom;
         LastMessageInRoom = message;
-        LastMessageChanged(buf, LastMessageInRoom);
+        LastMessageChanged(oldLastMessage, LastMessageInRoom);
     }
 }

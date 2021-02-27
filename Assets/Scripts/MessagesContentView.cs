@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MessagesContentView : MonoBehaviour
 {
@@ -9,24 +7,26 @@ public class MessagesContentView : MonoBehaviour
 
     private void Awake()
     {
-        UChatApp.Instance.CurrentChatRoom.LastMessageChanged += OnMessageSended;
+        UChatApp.Instance.CurrentChatRoom.LastMessageChanged += LastMessageUpdated;
     }
 
     private void OnDestroy()
     {
-        UChatApp.Instance.CurrentChatRoom.LastMessageChanged -= OnMessageSended;
+        UChatApp.Instance.CurrentChatRoom.LastMessageChanged -= LastMessageUpdated;
     }
 
-    private void OnMessageSended(Message messageO, Message messageN)
+    private void LastMessageUpdated(Message messageO, Message messageN)
     {
-        var newMessageItem = Instantiate(messageItemPrefab);
-        newMessageItem.transform.SetParent(scrollContent.transform);
+        var newMessageItem = Instantiate(messageItemPrefab, scrollContent.transform, false);
         newMessageItem.Init(messageN);
 
         if (messageO != null)
         {
-            bool isSame = messageO.Sender.Id == messageN.Sender.Id;
-            newMessageItem.CalculateTopPadding(isSame);
+            bool isSameSender = messageO.Sender.Id == messageN.Sender.Id;
+            newMessageItem.CalculateTopPadding(isSameSender);
         }
+
+        var rectTransform = newMessageItem.GetComponent<RectTransform>();
+        //rectTransform.sizeDelta = new Vector2(scrollContent.rect.width, rectTransform.rect.height);
     }
 }

@@ -9,7 +9,12 @@ public class MessageItem : MonoBehaviour
     [SerializeField] Button deleteMessageButton;
     [SerializeField] HorizontalLayoutGroup horizontalLayout;
     [SerializeField] MessageBubble messageBubble;
-    
+
+    private void Awake()
+    {
+        deleteMessageButton.gameObject.SetActive(false);
+    }
+
     public void Init(Message message)
     {
         bool isOwner = UChatApp.Instance.IsOwnerUser(message.Sender);
@@ -24,7 +29,8 @@ public class MessageItem : MonoBehaviour
     // TODO
     public void CalculateTopPadding(bool isPreviosMessageSameSender)
     {
-        int topPaddingDelta = isPreviosMessageSameSender ? 10 : 0;
+        const int paddingValue = 10;
+        int topPaddingDelta = isPreviosMessageSameSender ? paddingValue : 0;
         var padding = horizontalLayout.padding;
         var newPadding = new RectOffset(padding.left, padding.right, padding.top - topPaddingDelta, padding.bottom);
         horizontalLayout.padding = newPadding;

@@ -11,7 +11,7 @@ public class UChatApp : MonoBehaviour
 
     public User OwnerUser { get; private set; }
     public ChatController ChatController { get; private set; }
-    public Room CurrentChatRoom { get; private set; }
+    public ChatRoom CurrentChatRoom { get; private set; }
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class UChatApp : MonoBehaviour
     {
         OwnerUser = UChatConfig.GetRandomOwner();
         ChatController = new ChatController();
-        CurrentChatRoom = new Room();
+        CurrentChatRoom = new ChatRoom();
         CurrentChatRoom.Init();
     }
 
