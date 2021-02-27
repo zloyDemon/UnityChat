@@ -25,8 +25,5 @@ public class MessagesContentView : MonoBehaviour
             bool isSameSender = messageO.Sender.Id == messageN.Sender.Id;
             newMessageItem.CalculateTopPadding(isSameSender);
         }
-
-        var rectTransform = newMessageItem.GetComponent<RectTransform>();
-        //rectTransform.sizeDelta = new Vector2(scrollContent.rect.width, rectTransform.rect.height);
     }
 }
