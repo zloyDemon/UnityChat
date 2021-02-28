@@ -18,8 +18,8 @@ public class MessageItem : MonoBehaviour
     public void Init(Message message)
     {
         bool isOwner = UChatApp.Instance.IsOwnerUser(message.Sender);
-        string dateString = DateUtils.GetDateNowFormat();
-        messageBubble.SetMessageData(message.MessageText, dateString, isOwner);
+        messageBubble.SetMessageData(message);
+        TransformMessageBubble(MessageBubble.MessageBubbleType.Last);
         horizontalLayout.reverseArrangement = !isOwner;
         horizontalLayout.childAlignment = isOwner ? TextAnchor.LowerRight : TextAnchor.LowerLeft;
         var sprite = UChatApp.Instance.Avatars.GetSpriteByName(message.Sender.AvatarId);
@@ -33,7 +33,13 @@ public class MessageItem : MonoBehaviour
         const int paddingValue = 10;
         int topPaddingDelta = isPreviosMessageSameSender ? paddingValue : 0;
         var padding = horizontalLayout.padding;
-        var newPadding = new RectOffset(padding.left, padding.right, padding.top - topPaddingDelta, padding.bottom);
-        horizontalLayout.padding = newPadding;
+        horizontalLayout.padding.top = padding.top - topPaddingDelta;
+    }
+
+    public void TransformMessageBubble(MessageBubble.MessageBubbleType type)
+    {
+        messageBubble.TransformMessageBubble(type);
+        avatar.color = type == MessageBubble.MessageBubbleType.Last ? Color.white : Color.clear;
+        horizontalLayout.spacing = type == MessageBubble.MessageBubbleType.Last ? 10 : 42;
     }
 }
