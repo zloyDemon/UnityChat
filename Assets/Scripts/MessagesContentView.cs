@@ -62,7 +62,7 @@ public class MessagesContentView : MonoBehaviour
     {
         string messageText = inputField.text;
         inputField.text = string.Empty;
-        UChatApp.Instance.ChatController.SendMessage(messageText);
+        UChatApp.Instance.CurrentChatRoom.SendMessage(messageText);
     }
 
     private void OnDeleteMessagesButtonClick()

@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ChatRoom : IDisposable
+public class ChatRoom
 {
     public List<User> RoomUsers { get; private set; }
     public List<Message> roomMessages { get; } = new List<Message>();
@@ -14,16 +14,7 @@ public class ChatRoom : IDisposable
 
     public event Action<Message, Message> LastMessageChanged = (oldM, newM) => { };
     public event Action<Message> MessageDeleted = dm => { };
-
-    public void Init()
-    {
-        UChatApp.Instance.ChatController.MessageSended += OnMessageSended;
-    }
-
-    public void Dispose()
-    {
-        UChatApp.Instance.ChatController.MessageSended -= OnMessageSended;
-    }
+    public event Action<Message> MessageSended = m => { };
 
     public void SetRoomUsers(List<User> roomUsers)
     {
@@ -63,5 +54,13 @@ public class ChatRoom : IDisposable
 
             MessageDeleted(message);
         }
+    }
+
+    public void SendMessage(string messageText)
+    {
+        var messageAuthor = UChatApp.Instance.CurrentChatRoom.GetRandomUser();
+        Message message = new Message(UChatUtils.GenerateId(), messageText, messageAuthor);
+        OnMessageSended(message);
+        MessageSended(message);
     }
 }
