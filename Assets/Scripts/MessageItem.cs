@@ -9,6 +9,9 @@ public class MessageItem : MonoBehaviour
     [SerializeField] Button deleteMessageButton;
     [SerializeField] HorizontalLayoutGroup horizontalLayout;
     [SerializeField] MessageBubble messageBubble;
+    [SerializeField] RectTransform space;
+
+    public Message CurrentMessage { get; private set; }
 
     private void Awake()
     {
@@ -17,6 +20,7 @@ public class MessageItem : MonoBehaviour
 
     public void Init(Message message)
     {
+        CurrentMessage = message;
         bool isOwner = UChatApp.Instance.IsOwnerUser(message.Sender);
         messageBubble.SetMessageData(message);
         TransformMessageBubble(MessageBubble.MessageBubbleType.Last);
@@ -25,6 +29,8 @@ public class MessageItem : MonoBehaviour
         var sprite = UChatApp.Instance.Avatars.GetSpriteByName(message.Sender.AvatarId);
         if (sprite != null)
             avatar.sprite = sprite;
+        if (isOwner)
+            deleteMessageButton.onClick.AddListener(DeleteThisMessage);
     }
 
     // TODO
@@ -40,6 +46,16 @@ public class MessageItem : MonoBehaviour
     {
         messageBubble.TransformMessageBubble(type);
         avatar.color = type == MessageBubble.MessageBubbleType.Last ? Color.white : Color.clear;
-        horizontalLayout.spacing = type == MessageBubble.MessageBubbleType.Last ? 10 : 42;
+        space.sizeDelta = Vector2.right * (type == MessageBubble.MessageBubbleType.Last ? -horizontalLayout.spacing : 20);
+    }
+
+    public void SetActiveDeleteButton(bool isActive)
+    {
+        deleteMessageButton.gameObject.SetActive(isActive);
+    }
+
+    private void DeleteThisMessage()
+    {
+        UChatApp.Instance.CurrentChatRoom.DeleteMessageFromRoom(CurrentMessage);
     }
 }

@@ -9,7 +9,7 @@ public class ChatController
     public void SendMessage(string messageText)
     {
         var messageAuthor = UChatConfig.GetRandomOwner();
-        Message message = new Message(UnityEngine.Random.Range(int.MinValue, int.MaxValue), messageText, messageAuthor);
+        Message message = new Message(UChatUtils.GenerateId(), messageText, messageAuthor);
         MessageSended(message);
         MessageRecived(message);
     }
