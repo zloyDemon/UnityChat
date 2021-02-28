@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +15,7 @@ public class MessagesContentView : MonoBehaviour
     [SerializeField] Button deleteMessageButton;
     [SerializeField] RectTransform deleteMessageArea;
     [SerializeField] Button readyButton;
+    [SerializeField] LayoutElement item;
 
     private List<MessageItem> messageItems = new List<MessageItem>();
     private Dictionary<int, MessageItem> usersLastMessages = new Dictionary<int, MessageItem>();
@@ -37,7 +40,6 @@ public class MessagesContentView : MonoBehaviour
     {
         var newMessageItem = Instantiate(messageItemPrefab, scrollContent.transform, false);
         newMessageItem.Init(messageN);
-
         if (messageO != null)
         {
             bool isSameSender = messageO.Sender.Id == messageN.Sender.Id;
@@ -87,7 +89,7 @@ public class MessagesContentView : MonoBehaviour
 
     private void OnMessageDeleted(Message message)
     {
-        var messageItem = messageItems.Find(m => m.CurrentMessage.IdMessage == message.IdMessage);
+        var messageItem = messageItems.FirstOrDefault(m => m.CurrentMessage.IdMessage == message.IdMessage);
         if (messageItem != null)
         {
             messageItems.Remove(messageItem);

@@ -20,16 +20,20 @@ public class UChatApp : MonoBehaviour
         if (Instance == null)
             Instance = this;
         DontDestroyOnLoad(gameObject);
-        
+
         InitApp();
     }
 
     private void InitApp()
     {
-        OwnerUser = UChatConfig.GetRandomOwner();
         ChatController = new ChatController();
         CurrentChatRoom = new ChatRoom();
         CurrentChatRoom.Init();
+    }
+
+    public void SetOwner(User owner)
+    {
+        OwnerUser = owner;
     }
 
     public bool IsOwnerUser(User user)

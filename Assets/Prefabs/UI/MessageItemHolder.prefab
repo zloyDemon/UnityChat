@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1236964196917799642}
   - component: {fileID: 4999805554782502312}
   - component: {fileID: 6940206883531131358}
+  - component: {fileID: 6810139040517284558}
   m_Layer: 5
   m_Name: MessageItemHolder
   m_TagString: Untagged
@@ -108,6 +109,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &6810139040517284558
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710375671107729037}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1079425611296209314
 GameObject:
   m_ObjectHideFlags: 0

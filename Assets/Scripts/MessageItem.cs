@@ -40,6 +40,7 @@ public class MessageItem : MonoBehaviour
         int topPaddingDelta = isPreviosMessageSameSender ? paddingValue : 0;
         var padding = horizontalLayout.padding;
         horizontalLayout.padding.top = padding.top - topPaddingDelta;
+
     }
 
     public void TransformMessageBubble(MessageBubble.MessageBubbleType type)

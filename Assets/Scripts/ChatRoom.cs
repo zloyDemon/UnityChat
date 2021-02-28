@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ChatRoom : IDisposable
 {
-    public List<User> RoomUsers { get; } = new List<User>();
+    public List<User> RoomUsers { get; private set; }
     public List<Message> roomMessages { get; } = new List<Message>();
     public Dictionary<int, Message> lastMessages = new Dictionary<int, Message>();
     public Message LastMessageInRoom { get; private set; }
@@ -22,6 +23,16 @@ public class ChatRoom : IDisposable
     public void Dispose()
     {
         UChatApp.Instance.ChatController.MessageSended -= OnMessageSended;
+    }
+
+    public void SetRoomUsers(List<User> roomUsers)
+    {
+        RoomUsers = roomUsers;
+    }
+
+    public User GetRandomUser()
+    {
+        return RoomUsers[Random.Range(0, RoomUsers.Count)];
     }
 
     private void OnMessageSended(Message message)

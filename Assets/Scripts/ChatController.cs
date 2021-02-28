@@ -4,13 +4,11 @@ using UnityEngine;
 public class ChatController
 {
     public event Action<Message> MessageSended = m => { };
-    public event Action<Message> MessageRecived = m => { };
 
     public void SendMessage(string messageText)
     {
-        var messageAuthor = UChatConfig.GetRandomOwner();
+        var messageAuthor = UChatApp.Instance.CurrentChatRoom.GetRandomUser();
         Message message = new Message(UChatUtils.GenerateId(), messageText, messageAuthor);
         MessageSended(message);
-        MessageRecived(message);
     }
 }

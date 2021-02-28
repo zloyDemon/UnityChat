@@ -6,9 +6,9 @@ public static class UChatConfig
 {
     private static List<User> users = new List<User>()
     {
-        new User(0, "Jack Joyce", "avatar_1"),
-        new User(1, "Alan Wake", "avatar_2"),
-        new User(2, "Max Payne", "avatar_3"),
+        new User(UChatUtils.GenerateId(), "Jack Joyce", "avatar_1"),
+        new User(UChatUtils.GenerateId(), "Alan Wake", "avatar_2"),
+        new User(UChatUtils.GenerateId(), "Max Payne", "avatar_3"),
     };
 
     public static User GetRandomOwner()
