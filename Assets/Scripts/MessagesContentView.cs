@@ -39,18 +39,14 @@ public class MessagesContentView : MonoBehaviour
     private void LastMessageUpdated(Message messageO, Message messageN)
     {
         var newMessageItem = Instantiate(messageItemPrefab, scrollContent.transform, false);
-        newMessageItem.Init(messageN);
-        if (messageO != null)
+        bool isSameSender = messageO != null && messageO.Sender.Id == messageN.Sender.Id;
+        newMessageItem.Init(messageN, isSameSender);
+        if (isSameSender)
         {
-            bool isSameSender = messageO.Sender.Id == messageN.Sender.Id;
-            newMessageItem.CalculateTopPadding(isSameSender);
-            if (isSameSender)
+            if (usersLastMessages.ContainsKey(messageN.Sender.Id))
             {
-                if (usersLastMessages.ContainsKey(messageN.Sender.Id))
-                {
-                    var oldSenderMessage = usersLastMessages[messageN.Sender.Id];
-                    oldSenderMessage.TransformMessageBubble(MessageBubble.MessageBubbleType.Usual);
-                }
+                var oldSenderMessage = usersLastMessages[messageN.Sender.Id];
+                oldSenderMessage.TransformMessageBubble(MessageBubble.MessageBubbleType.Usual);
             }
         }
 

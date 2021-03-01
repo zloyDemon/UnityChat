@@ -188,7 +188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6427021295123048555
 RectTransform:
   m_ObjectHideFlags: 0
@@ -459,6 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messageText: {fileID: 8638725933964251324}
   dateText: {fileID: 3182005113612884052}
+  messageAuthor: {fileID: 0}
   bubbleBG: {fileID: 5554633797415461481}
   ownerBG: {fileID: 21300000, guid: ebbe9f29bcf6bc74d808fa3f25284d0f, type: 3}
   otherBG: {fileID: 21300000, guid: 08e63d6c0b125f149b9bb45273260d5b, type: 3}
+  ownerBGLastMessage: {fileID: 0}
+  otherBGLastMessage: {fileID: 0}
