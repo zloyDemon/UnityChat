@@ -33,6 +33,10 @@ public class MessageItem : MonoBehaviour
         TransformMessageBubble(MessageBubble.MessageBubbleType.Last);
         horizontalLayout.reverseArrangement = !isOwner;
         horizontalLayout.childAlignment = isOwner ? TextAnchor.LowerRight : TextAnchor.LowerLeft;
+        if (isOwner)
+            horizontalLayout.padding.left = 80;
+        else
+            horizontalLayout.padding.right = 80;
         var sprite = UChatApp.Instance.Avatars.GetSpriteByName(message.Sender.AvatarId);
         if (sprite != null)
             avatar.sprite = sprite;
@@ -43,6 +47,8 @@ public class MessageItem : MonoBehaviour
             CalculateTopPadding();
 
         AnimateAppearanceItem();
+
+        StartCoroutine(CorWaitFrame());
     }
 
     private void CalculateTopPadding()
@@ -65,7 +71,7 @@ public class MessageItem : MonoBehaviour
     {
         messageBubble.TransformMessageBubble(type);
         avatar.color = type == MessageBubble.MessageBubbleType.Last ? Color.white : Color.clear;
-        space.sizeDelta = Vector2.right * (type == MessageBubble.MessageBubbleType.Last ? -horizontalLayout.spacing : 20);
+        //space.sizeDelta = Vector2.right * (type == MessageBubble.MessageBubbleType.Last ? -horizontalLayout.spacing : 20);
     }
 
     public void SetActiveDeleteButton(bool isActive)
@@ -76,5 +82,12 @@ public class MessageItem : MonoBehaviour
     private void DeleteThisMessage()
     {
         UChatApp.Instance.CurrentChatRoom.DeleteMessageFromRoom(CurrentMessage);
+    }
+
+
+    private IEnumerator CorWaitFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        Debug.LogWarning(((RectTransform)transform).sizeDelta.y);
     }
 }

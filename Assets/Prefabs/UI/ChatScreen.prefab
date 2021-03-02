@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511e545e2d516b041a293a7d88490bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageItemPrefab: {fileID: 4999805554782502312, guid: ed9a8f84d4753824585f54a5a150926a, type: 3}
+  messageItemPrefab: {fileID: 4999805554782502312, guid: 083db1304ace8e243b1842eff459a845, type: 3}
   scrollContent: {fileID: 7300301271888015044}
   inputField: {fileID: 7682593159304878512}
   sendMessageButton: {fileID: 7682593159449131437}

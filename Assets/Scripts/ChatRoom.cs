@@ -14,7 +14,6 @@ public class ChatRoom
 
     public event Action<Message, Message> LastMessageChanged = (oldM, newM) => { };
     public event Action<Message> MessageDeleted = dm => { };
-    public event Action<Message> MessageSended = m => { };
 
     public void SetRoomUsers(List<User> roomUsers)
     {
@@ -58,9 +57,8 @@ public class ChatRoom
 
     public void SendMessage(string messageText)
     {
-        var messageAuthor = UChatApp.Instance.CurrentChatRoom.GetRandomUser();
+        var messageAuthor = GetRandomUser();
         Message message = new Message(UChatUtils.GenerateId(), messageText, messageAuthor);
         OnMessageSended(message);
-        MessageSended(message);
     }
 }

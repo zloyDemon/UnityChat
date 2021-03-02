@@ -230,12 +230,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.808
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -289,6 +289,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 299835247}
     m_Modifications:
+    - target: {fileID: 422230404705321863, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
+      propertyPath: m_text
+      value: Enter name
+      objectReference: {fileID: 0}
+    - target: {fileID: 422230404705321863, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1007095751306435504, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -309,9 +317,27 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1565981926939253920, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
+      propertyPath: m_Text
+      value: ' Add
+
+        user'
+      objectReference: {fileID: 0}
     - target: {fileID: 2090349092958731731, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
       propertyPath: m_text
       value: Warning
+      objectReference: {fileID: 0}
+    - target: {fileID: 2383961569060848587, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 330
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207252648121029352, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207252648121029352, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4905333734204919938, guid: 84305ea03caac8846ac66eb52e1fc9dc, type: 3}
       propertyPath: m_Name

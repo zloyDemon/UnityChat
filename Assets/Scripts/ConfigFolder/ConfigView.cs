@@ -78,6 +78,9 @@ public class ConfigView : MonoBehaviour
         newItem.SetToggleGroup(toggleGroup);
         configUserItems.Add(newItem);
 
+        if(choosenUser == null)
+            newItem.SetToggle(true);
+
         ClearInput();
     }
 

@@ -19,7 +19,9 @@ public class MessageBubble : MonoBehaviour
     [SerializeField] Sprite otherBGLastMessage;
 
     private Message currentMessage;
-    private VerticalLayoutGroup verticalLayoutGroup;
+    private VerticalLayoutGroup rootVerticalLayoutGroup;
+    private VerticalLayoutGroup bubbleVerticalLayoutGroup;
+    private LayoutElement layoutElement;
 
     public enum MessageBubbleType
     {
@@ -29,7 +31,9 @@ public class MessageBubble : MonoBehaviour
 
     private void Awake()
     {
-        verticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
+        rootVerticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
+        bubbleVerticalLayoutGroup = bubbleBG.gameObject.GetComponent<VerticalLayoutGroup>();
+        layoutElement = bubbleBG.GetComponent<LayoutElement>();
     }
 
     public void SetMessageData(Message message)
@@ -53,11 +57,13 @@ public class MessageBubble : MonoBehaviour
         if (isOwner)
         {
             dateText.rectTransform.anchoredPosition = new Vector2(isLast ? -45 : -15, dateText.rectTransform.anchoredPosition.y);
-            verticalLayoutGroup.padding.right = isLast ? 49 : 20;
+            rootVerticalLayoutGroup.padding.right = isLast ? 0 : 30;
+            bubbleVerticalLayoutGroup.padding.right = isLast ? 50 : 20;
+            layoutElement.minWidth = isLast ? 130 : 100;
         }
         else
         {
-            verticalLayoutGroup.padding.left = isLast ? 49 : 20;
+            rootVerticalLayoutGroup.padding.left = isLast ? 0 : 30;
         }
     }
 }
