@@ -49,9 +49,8 @@ public class MessageBubble : MonoBehaviour
     {
         bool isOwner = UChatApp.Instance.IsOwnerUser(currentMessage.Sender);
         bool isLast = type == MessageBubbleType.Last;
-        Sprite bubbleBGSprite;
-        bubbleBGSprite = isOwner ? (isLast ? ownerBGLastMessage : ownerBG) : isLast ? otherBGLastMessage : otherBG;
-        bubbleBG.sprite = bubbleBGSprite;
+        var bubbleBgSprite = isOwner ? (isLast ? ownerBGLastMessage : ownerBG) : isLast ? otherBGLastMessage : otherBG;
+        bubbleBG.sprite = bubbleBgSprite;
         messageAuthor.gameObject.SetActive(isLast);
 
         if (isOwner)
@@ -64,6 +63,8 @@ public class MessageBubble : MonoBehaviour
         else
         {
             rootVerticalLayoutGroup.padding.left = isLast ? 0 : 30;
+            bubbleVerticalLayoutGroup.padding.left = isLast ? 50 : 20;
+            layoutElement.minWidth = isLast ? 130 : 100;
         }
     }
 }

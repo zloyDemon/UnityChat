@@ -71,7 +71,6 @@ public class MessageItem : MonoBehaviour
     {
         messageBubble.TransformMessageBubble(type);
         avatar.color = type == MessageBubble.MessageBubbleType.Last ? Color.white : Color.clear;
-        //space.sizeDelta = Vector2.right * (type == MessageBubble.MessageBubbleType.Last ? -horizontalLayout.spacing : 20);
     }
 
     public void SetActiveDeleteButton(bool isActive)
@@ -83,7 +82,6 @@ public class MessageItem : MonoBehaviour
     {
         UChatApp.Instance.CurrentChatRoom.DeleteMessageFromRoom(CurrentMessage);
     }
-
 
     private IEnumerator CorWaitFrame()
     {

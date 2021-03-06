@@ -37,7 +37,7 @@ public class ConfigView : MonoBehaviour
     {
         if (users.Count < 2)
         {
-            ShowWarning("Users must be more than 2.");
+            ShowWarning("Users must be more than 1.");
             return;
         }
 

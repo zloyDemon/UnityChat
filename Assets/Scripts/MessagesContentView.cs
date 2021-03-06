@@ -15,7 +15,6 @@ public class MessagesContentView : MonoBehaviour
     [SerializeField] Button deleteMessageButton;
     [SerializeField] RectTransform deleteMessageArea;
     [SerializeField] Button readyButton;
-    [SerializeField] LayoutElement item;
 
     private List<MessageItem> messageItems = new List<MessageItem>();
     private Dictionary<int, MessageItem> usersLastMessages = new Dictionary<int, MessageItem>();
@@ -38,6 +37,11 @@ public class MessagesContentView : MonoBehaviour
 
     private void LastMessageUpdated(Message messageO, Message messageN)
     {
+        /*
+           This is a bad solution, i know. Instead of Instantiate and Destroy, better to use pool objects.
+           For ScrollRect it’s necessary to create special view like RecyclerView in Android. It, however,
+           will take more time, so I’ll leave it that way for no.
+         */
         var newMessageItem = Instantiate(messageItemPrefab, scrollContent.transform, false);
         bool isSameSender = messageO != null && messageO.Sender.Id == messageN.Sender.Id;
         newMessageItem.Init(messageN, isSameSender);

@@ -1547,6 +1547,7 @@ MonoBehaviour:
   deleteMessageArea: {fileID: 685513660604691189}
   readyButton: {fileID: 6991818145753815282}
   item: {fileID: 0}
+  scrollRect: {fileID: 7649113873820794619}
 --- !u!1 &7682593160487233790
 GameObject:
   m_ObjectHideFlags: 0
