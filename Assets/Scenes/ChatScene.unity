@@ -735,10 +735,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChatScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 7682593160449424905, guid: dcff80c9ca9571b41b01d35069122d3e, type: 3}
-      propertyPath: messageItemPrefab
-      value: 
-      objectReference: {fileID: 4999805554782502312, guid: ed9a8f84d4753824585f54a5a150926a, type: 3}
     - target: {fileID: 8517649205370419258, guid: dcff80c9ca9571b41b01d35069122d3e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
