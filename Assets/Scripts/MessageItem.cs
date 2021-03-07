@@ -27,6 +27,7 @@ public class MessageItem : MonoBehaviour
 
     public void Init(Message message, bool isSamePrevios = false)
     {
+        const int HorizontalLayoutPaddingValue = 80;
         CurrentMessage = message;
         bool isOwner = UChatApp.Instance.IsOwnerUser(message.Sender);
         messageBubble.SetMessageData(message);
@@ -34,9 +35,9 @@ public class MessageItem : MonoBehaviour
         horizontalLayout.reverseArrangement = !isOwner;
         horizontalLayout.childAlignment = isOwner ? TextAnchor.LowerRight : TextAnchor.LowerLeft;
         if (isOwner)
-            horizontalLayout.padding.left = 80;
+            horizontalLayout.padding.left = HorizontalLayoutPaddingValue;
         else
-            horizontalLayout.padding.right = 80;
+            horizontalLayout.padding.right = HorizontalLayoutPaddingValue;
         var sprite = UChatApp.Instance.Avatars.GetSpriteByName(message.Sender.AvatarId);
         if (sprite != null)
             avatar.sprite = sprite;
@@ -54,9 +55,8 @@ public class MessageItem : MonoBehaviour
     private void CalculateTopPadding()
     {
         const int paddingValue = 10;
-        int topPaddingDelta = paddingValue;
         var padding = horizontalLayout.padding;
-        horizontalLayout.padding.top = padding.top - topPaddingDelta;
+        horizontalLayout.padding.top = padding.top - paddingValue;
     }
 
     private void AnimateAppearanceItem()

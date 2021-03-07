@@ -47,6 +47,15 @@ public class MessageBubble : MonoBehaviour
 
     public void TransformMessageBubble(MessageBubbleType type)
     {
+        const int RootPaddingIsLast = 0;
+        const int RootPadding = 30;
+        const int BubblePaddingIsLast = 50;
+        const int BubblePadding = 20;
+        const int LayoutElementMinWidth = 100;
+        const int LayoutElementMinWidthIsLast = 130;
+        const float DateTextAnchoredPositionX = -15;
+        const float DateTextAnchoredPositionXIsLast = -45;
+
         bool isOwner = UChatApp.Instance.IsOwnerUser(currentMessage.Sender);
         bool isLast = type == MessageBubbleType.Last;
         var bubbleBgSprite = isOwner ? (isLast ? ownerBGLastMessage : ownerBG) : isLast ? otherBGLastMessage : otherBG;
@@ -55,16 +64,16 @@ public class MessageBubble : MonoBehaviour
 
         if (isOwner)
         {
-            dateText.rectTransform.anchoredPosition = new Vector2(isLast ? -45 : -15, dateText.rectTransform.anchoredPosition.y);
-            rootVerticalLayoutGroup.padding.right = isLast ? 0 : 30;
-            bubbleVerticalLayoutGroup.padding.right = isLast ? 50 : 20;
-            layoutElement.minWidth = isLast ? 130 : 100;
+            dateText.rectTransform.anchoredPosition = new Vector2(isLast ? DateTextAnchoredPositionXIsLast : DateTextAnchoredPositionX, dateText.rectTransform.anchoredPosition.y);
+            rootVerticalLayoutGroup.padding.right = isLast ? RootPaddingIsLast : RootPadding;
+            bubbleVerticalLayoutGroup.padding.right = isLast ? BubblePaddingIsLast : BubblePadding;
+            layoutElement.minWidth = isLast ? LayoutElementMinWidthIsLast : LayoutElementMinWidth;
         }
         else
         {
-            rootVerticalLayoutGroup.padding.left = isLast ? 0 : 30;
-            bubbleVerticalLayoutGroup.padding.left = isLast ? 50 : 20;
-            layoutElement.minWidth = isLast ? 130 : 100;
+            rootVerticalLayoutGroup.padding.left = isLast ? RootPaddingIsLast : RootPadding;
+            bubbleVerticalLayoutGroup.padding.left = isLast ? BubblePaddingIsLast : BubblePadding;
+            layoutElement.minWidth = isLast ? LayoutElementMinWidthIsLast : LayoutElementMinWidth;
         }
     }
 }

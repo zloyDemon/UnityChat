@@ -7,9 +7,10 @@ using Random = UnityEngine.Random;
 
 public class ChatRoom
 {
-    public List<User> RoomUsers { get; private set; }
-    public List<Message> roomMessages { get; } = new List<Message>();
-    public Dictionary<int, Message> lastMessages = new Dictionary<int, Message>();
+    private List<User> roomUsers;
+    private List<Message> roomMessages = new List<Message>();
+    private Dictionary<int, Message> lastMessages = new Dictionary<int, Message>();
+
     public Message LastMessageInRoom { get; private set; }
 
     public event Action<Message, Message> LastMessageChanged = (oldM, newM) => { };
@@ -17,12 +18,12 @@ public class ChatRoom
 
     public void SetRoomUsers(List<User> roomUsers)
     {
-        RoomUsers = roomUsers;
+        this.roomUsers = roomUsers;
     }
 
-    public User GetRandomUser()
+    private User GetRandomUser()
     {
-        return RoomUsers[Random.Range(0, RoomUsers.Count)];
+        return roomUsers[Random.Range(0, roomUsers.Count)];
     }
 
     private void OnMessageSended(Message message)

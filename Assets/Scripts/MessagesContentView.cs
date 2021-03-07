@@ -40,7 +40,7 @@ public class MessagesContentView : MonoBehaviour
         /*
            This is a bad solution, i know. Instead of Instantiate and Destroy, better to use pool objects.
            For ScrollRect it’s necessary to create special view like RecyclerView in Android. It, however,
-           will take more time, so I’ll leave it that way for no.
+           will take more time, so I’ll leave it that way for now.
          */
         var newMessageItem = Instantiate(messageItemPrefab, scrollContent.transform, false);
         bool isSameSender = messageO != null && messageO.Sender.Id == messageN.Sender.Id;
