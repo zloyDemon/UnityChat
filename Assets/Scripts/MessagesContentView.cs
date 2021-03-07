@@ -61,6 +61,9 @@ public class MessagesContentView : MonoBehaviour
     private void OnSendMessageClick()
     {
         string messageText = inputField.text;
+        if (string.IsNullOrEmpty(messageText))
+            return;
+
         inputField.text = string.Empty;
         UChatApp.Instance.CurrentChatRoom.SendMessage(messageText);
     }

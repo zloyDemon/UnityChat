@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MessageItem : MonoBehaviour
 {
+    private float FadeDuration = 0.25f;
+
     [SerializeField] Image avatar;
     [SerializeField] Button deleteMessageButton;
     [SerializeField] HorizontalLayoutGroup horizontalLayout;
@@ -48,8 +50,6 @@ public class MessageItem : MonoBehaviour
             CalculateTopPadding();
 
         AnimateAppearanceItem();
-
-        StartCoroutine(CorWaitFrame());
     }
 
     private void CalculateTopPadding()
@@ -63,8 +63,7 @@ public class MessageItem : MonoBehaviour
     {
         TweenUtils.KillAndNull(ref fadeTween);
         canvasGroup.alpha = 0;
-        float duration = 0.25f;
-        fadeTween = canvasGroup.DOFade(1, duration).OnComplete(() => fadeTween = null);
+        fadeTween = canvasGroup.DOFade(1, FadeDuration).OnComplete(() => fadeTween = null);
     }
 
     public void TransformMessageBubble(MessageBubble.MessageBubbleType type)
@@ -80,12 +79,11 @@ public class MessageItem : MonoBehaviour
 
     private void DeleteThisMessage()
     {
-        UChatApp.Instance.CurrentChatRoom.DeleteMessageFromRoom(CurrentMessage);
-    }
-
-    private IEnumerator CorWaitFrame()
-    {
-        yield return new WaitForEndOfFrame();
-        Debug.LogWarning(((RectTransform)transform).sizeDelta.y);
+        TweenUtils.KillAndNull(ref fadeTween);
+        fadeTween = canvasGroup.DOFade(0, FadeDuration).OnComplete(() =>
+        {
+            UChatApp.Instance.CurrentChatRoom.DeleteMessageFromRoom(CurrentMessage);
+            fadeTween = null;
+        });
     }
 }
